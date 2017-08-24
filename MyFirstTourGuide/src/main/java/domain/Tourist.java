@@ -26,6 +26,4 @@ public class Tourist extends User{
 		guide.confirmTourist(this, tour);
 	}
 	
-	public void saveToBucketList(){}
-	public void takeTourOutOfBucketList(){}
 }

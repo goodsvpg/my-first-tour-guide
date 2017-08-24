@@ -7,6 +7,7 @@ import domain.Tourist;
 
 public class Reservation {
 	Tourist tourist = null;
+	
 	public void start(){
 		login();
 		System.out.println("장소를 입력해 주세요");

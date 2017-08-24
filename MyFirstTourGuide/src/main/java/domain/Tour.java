@@ -6,6 +6,7 @@ public class Tour {
 	//private User user;
 	
 	private Long id;
+	
 	private String title;
 	private String description;
 	private List<Place> placeList;
@@ -36,7 +37,6 @@ public class Tour {
 		this.description = description;
 	}
 
-	
 	public List<Place> getPlaceList() {
 		return placeList;
 	}
@@ -47,6 +47,5 @@ public class Tour {
 
 	public void getTourInfo() {
 		// TODO Auto-generated method stub
-		
 	}
 }

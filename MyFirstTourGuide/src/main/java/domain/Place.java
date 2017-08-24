@@ -38,5 +38,4 @@ public class Place {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
 }
