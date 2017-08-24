@@ -2,6 +2,8 @@ package domain;
 
 import java.util.List;
 
+import resource.TourResource;
+
 public class Tour {
 	//private User user;
 	
@@ -9,6 +11,8 @@ public class Tour {
 	
 	private String title;
 	private String description;
+	
+	private Guide guide;
 	private List<Place> placeList;
 	
 	public Tour() {
@@ -45,7 +49,8 @@ public class Tour {
 		this.placeList = placeList;
 	}
 
-	public void getTourInfo() {
+	public void provideTourInfo() {
 		// TODO Auto-generated method stub
+		//return new TourResource(tour);
 	}
 }
