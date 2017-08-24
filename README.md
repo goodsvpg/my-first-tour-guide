@@ -9,3 +9,5 @@
   * 하나의 메소드는 하나의 일만 하여야 한다 
 * 테스트 코드를 작성하자
 * postgreSQL,Hibernate 사용해보자  
+* Spring HATEOAS 
+  * REST API에 HAL(Hypertext Application Language)을 적용하여 연관된 다른 API를 쉽게 사용할 수 있도록 하자
