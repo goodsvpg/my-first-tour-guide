@@ -38,4 +38,10 @@ public class Place {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
+	@Override
+	public String toString() {
+		return "Place [title=" + title + ", description=" + description + ", address=" + address + "]";
+	}
+	
 }

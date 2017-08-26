@@ -19,7 +19,8 @@ public class Tour {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Tour(String title, String description, List<Place> placeList) {
+	public Tour(Guide guide, String title, String description, List<Place> placeList) {
+		this.guide = guide;
 		this.title = title;
 		this.description = description;
 		this.placeList = placeList;
@@ -53,4 +54,12 @@ public class Tour {
 		// TODO Auto-generated method stub
 		//return new TourResource(tour);
 	}
+
+	@Override
+	public String toString() {
+		return "Tour [id=" + id + ", title=" + title + ", description=" + description + ", guide=" + guide
+				+ ", placeList=" + placeList + "]";
+	}
+	
+	
 }
