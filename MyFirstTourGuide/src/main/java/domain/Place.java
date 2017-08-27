@@ -41,7 +41,7 @@ public class Place {
 
 	@Override
 	public String toString() {
-		return "Place [title=" + title + ", description=" + description + ", address=" + address + "]";
+		return "장소 [제목=" + title + ", 설명=" + description + ", 주소=" + address + "]";
 	}
 	
 }

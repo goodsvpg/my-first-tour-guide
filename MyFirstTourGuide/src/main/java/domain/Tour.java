@@ -57,8 +57,8 @@ public class Tour {
 
 	@Override
 	public String toString() {
-		return "Tour [id=" + id + ", title=" + title + ", description=" + description + ", guide=" + guide
-				+ ", placeList=" + placeList + "]";
+		return "여행 [제목=" + title + ", 설명=" + description + ", 가이드=" + guide.nickName
+				+ ", 장소 리스트=" + placeList + "]";
 	}
 	
 	

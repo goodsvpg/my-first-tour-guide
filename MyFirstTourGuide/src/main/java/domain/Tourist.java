@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.List;
+import java.util.Scanner;
 
 import resource.TourResource;
 
@@ -16,9 +17,13 @@ public class Tourist extends User{
 	}
 	
 	//list
-	public List<Tour> requestTourList(String address, Board board){
-		List<Tour> tourList = board.showTourList(address);
-		return tourList;
+	public List<Tour> requestTourList(Scanner sc, Board board){
+		if(sc.hasNext()){
+			String address = sc.next();
+			List<Tour> tourList = board.giveTourList(address);
+			return tourList;
+		}
+		return null;
 	}
 	
 	//추후에 변경
@@ -31,5 +36,4 @@ public class Tourist extends User{
 	public void requestToParticipateTour(Tour tour, Guide guide){
 		guide.confirmTourist(this, tour);
 	}
-	
 }

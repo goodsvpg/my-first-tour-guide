@@ -10,7 +10,7 @@ public class Board {
 	private List<Tour> tourList;
 	
 	private Board() {
-		tourList = new LinkedList<Tour>();
+		tourList = new LinkedList<>();
 	}
 	
 	private static class Singleton{
@@ -22,9 +22,9 @@ public class Board {
 	}
 	
 	//List<Tour>를  Resources<TourResource>로 변경해야함
-	public List<Tour> showTourList(String address) {
+	public List<Tour> giveTourList(String address) {
 		//address에 해당하는 trip리스트를 요청한다
-		List<Tour> matchedTourList = null;
+		List<Tour> matchedTourList = new LinkedList<>();
 		
 		for(Tour tour : tourList){
 			for(Place place : tour.getPlaceList()){
@@ -41,10 +41,17 @@ public class Board {
 		tourList.add(tour);
 	}
 	
+	private void showTourList(){
+		StringBuilder sb = new StringBuilder();
+		for(Tour t : tourList){
+			sb.append(t.toString());
+			sb.append("\n");
+		}
+		System.out.println(sb.toString());
+	}
 
 	//추후에 변경
 //	public TourResource showTour(String tourId){
-//		
 //		return tour.provideTourInfo();
 //	}
 }

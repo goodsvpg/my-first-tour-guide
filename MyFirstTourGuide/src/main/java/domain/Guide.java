@@ -34,6 +34,7 @@ public class Guide extends User{
 	}
 	
 	public boolean enrollTour(Scanner sc, List<Place> placeList, Board board){
+//		sc.skip("[\\r\\n]+");
 		if(sc.hasNext()){
 			String[] strArr = sc.next().split(",");
 			if(strArr.length==2){
