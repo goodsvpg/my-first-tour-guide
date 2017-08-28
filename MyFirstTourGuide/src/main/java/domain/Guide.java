@@ -34,11 +34,10 @@ public class Guide extends User{
 	}
 	
 	public boolean enrollTour(Scanner sc, List<Place> placeList, Board board){
-//		sc.skip("[\\r\\n]+");
 		if(sc.hasNext()){
 			String[] strArr = sc.next().split(",");
-			if(strArr.length==2){
-				Tour myTour = new Tour(this, strArr[0], strArr[1], placeList);
+			if(strArr.length==3){
+				Tour myTour = new Tour(this, strArr[0], strArr[1], Integer.parseInt(strArr[2]), placeList);
 				board.saveTour(myTour);
 				return true;
 			}
@@ -46,8 +45,13 @@ public class Guide extends User{
 		return false;
 	}
 	
-	public void confirmTourist(Tourist tourist, Tour tour) {
-	
+	public boolean confirmTourist(Tourist tourist, Tour tour) {
+//		boolean IsReservationPosible = tour.isFull();
+//		if(!IsReservationPosible){
+//			tour.updateCount();
+//		}
+//		return IsReservationPosible;
+		return false;
 	}
 
 	@Override

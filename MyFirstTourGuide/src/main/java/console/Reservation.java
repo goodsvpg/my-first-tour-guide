@@ -3,6 +3,7 @@ package console;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 import domain.Board;
@@ -22,8 +23,6 @@ public class Reservation {
 	private List<Tour> tourList;
 	private List<Place> placeList;
 	
-	private List<Tour> tourListSearchByAddress;
-	
 	public void start(){
 		Scanner sc = new Scanner(System.in);
 		guide = new Guide("follow@me.com", "reliable");
@@ -42,8 +41,11 @@ public class Reservation {
 					break;
 				case "선택":
 					System.out.println("주소를 입력해 주세요");
-					if(showTourList(sc, board)){
-						//여행 선택
+					List<Tour> tourListSearchByAddress = showTourList(sc, board);
+					if(!tourListSearchByAddress.isEmpty()){
+						System.out.println("예약할 여행의 번호를 입력해주세요.");
+						Tour tour = selectTour(sc, tourListSearchByAddress);
+						reserveTour(tour);
 						break;
 					}else{
 						System.out.println("해당 주소에 예약 가능한 여행이 없습니다.\n");
@@ -69,8 +71,13 @@ public class Reservation {
 		placeList2.add(new Place("마라훠궈", "무제한 샤브샤브", "시먼"));
 		placeList2.add(new Place("치즈감자", "치즈를 듬뿍 넣고 여러 야채를 올린 감자", "스린야시장"));
 		
-		board.saveTour(new Tour(guide, "진짜 치앙마이를 만날 시간", "치앙마이의 식당과 관광지를 안내해드립니다.", placeList1));
-		board.saveTour(new Tour(guide, "대만 맛집 투어", "가장 유명한 맛집을 소개해드립니다.", placeList2));
+		List<Place> placeList3 = new ArrayList<>();
+		placeList3.add(new Place("Ristr8to", "세계 바리스타 대회 1위를한 커피를 즐길수 있는 곳", "님만해민"));
+		placeList3.add(new Place("금붕어식당", "치킨과 모닝글로리를 즐길수 있는 한국식 식당", "반캉왓"));
+		
+		board.saveTour(new Tour(guide, "진짜 치앙마이를 만날 시간", "치앙마이의 식당과 소품샵을 안내해드립니다.", 4, placeList1));
+		board.saveTour(new Tour(guide, "대만 맛집 투어", "가장 유명한 맛집을 소개해드립니다.", 3, placeList2));
+		board.saveTour(new Tour(guide, "치앙마이의 이곳 저곳", "치앙마이의 카페와 식당을 함께가요.", 2, placeList3));
 	}
 	
 	private void enrollTour(Scanner sc){
@@ -105,7 +112,7 @@ public class Reservation {
 		}
 		
   		enrollTour: while(placeList.size()!=0){
-			System.out.println("여행 정보를 입력해 주세요(제목,설명)");
+			System.out.println("여행 정보를 입력해 주세요(제목,설명,최대인원)");
 			
 			if(guide.enrollTour(sc, placeList, board)){
 				System.out.println("여행이 등록되었습니다.");
@@ -122,33 +129,38 @@ public class Reservation {
 		//추후 이메일 입력시 연결 링크를 보내는 것으로 변경
 	}
 
-	private boolean showTourList(Scanner sc, Board board){
+	private List<Tour> showTourList(Scanner sc, Board board){
 		//해당 장소에서 이루어 지는 tour 리스트를 보여줌
-		tourListSearchByAddress = tourist.requestTourList(sc, board);
+		String address = sc.next();
 		
-		if(tourListSearchByAddress.size()!=0){
-			StringBuilder sb = new StringBuilder();
-			sb.append("해당 주소의 예약 가능한 여행 목록입니다.\n");
-			for(Tour t : tourListSearchByAddress){
-				sb.append(t.toString());
-				sb.append("\n");
-			}
-			System.out.println(sb.toString());
-			return true;
-		}else{
-			return false;
+		List<Tour> tourListSearchByAddress = tourist.requestTourList(address, board);
+	
+		if(!tourListSearchByAddress.isEmpty()){
+			System.out.println("해당 주소의 예약 가능한 여행 목록입니다.");
+			showTourList(tourListSearchByAddress);
 		}
-	}
-	
-	private void selectTour(){
-		//tour정보 보여줌
-	}
-	
-	private void reserveTour(){
 		
+		return tourListSearchByAddress;
 	}
 	
-	private void confirmTour(){
-		
+	private void showTourList(List<Tour> tourList){
+		StringBuilder sb = new StringBuilder();
+		int index = 1;
+		for(Tour t : tourList){
+			sb.append("번호="+index++);
+			sb.append(t.toString());
+			sb.append("\n");
+		}
+		System.out.println(sb.toString());
+	}
+	
+	private Tour selectTour(Scanner sc, List<Tour> tourListSearchByAddress){
+		String tourNum = sc.next();
+		return tourListSearchByAddress.get(Integer.parseInt(tourNum)-1);
+	}
+	
+	private boolean reserveTour(Tour tour){
+		System.out.println("예약할 투어 정보 입니다."+tour.toString());
+		return guide.confirmTourist(tourist, tour);
 	}
 }

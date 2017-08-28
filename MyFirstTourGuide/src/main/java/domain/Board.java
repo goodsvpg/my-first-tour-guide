@@ -38,17 +38,11 @@ public class Board {
 	}
 	
 	public void saveTour(Tour tour){
+		//tour의 id는 자동으로 증가하게 변경할 것이므로 삭제 예정
+		tour.setId(tourList.size()+1);
 		tourList.add(tour);
 	}
 	
-	private void showTourList(){
-		StringBuilder sb = new StringBuilder();
-		for(Tour t : tourList){
-			sb.append(t.toString());
-			sb.append("\n");
-		}
-		System.out.println(sb.toString());
-	}
 
 	//추후에 변경
 //	public TourResource showTour(String tourId){

@@ -5,12 +5,16 @@ import java.util.List;
 import resource.TourResource;
 
 public class Tour {
-	//private User user;
 	
-	private Long id;
+	//추후에 자동으로 증가하도록 변경
+	private int id;
 	
 	private String title;
 	private String description;
+	private int maxNumberOfTourist; 
+	
+//	private int count;
+//	private boolean isFull;
 	
 	private Guide guide;
 	private List<Place> placeList;
@@ -19,11 +23,16 @@ public class Tour {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Tour(Guide guide, String title, String description, List<Place> placeList) {
+	public Tour(Guide guide, String title, String description, int maxNumberOfTourist, List<Place> placeList) {
 		this.guide = guide;
 		this.title = title;
 		this.description = description;
+		this.maxNumberOfTourist = maxNumberOfTourist;
 		this.placeList = placeList;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
@@ -50,16 +59,34 @@ public class Tour {
 		this.placeList = placeList;
 	}
 
-	public void provideTourInfo() {
-		// TODO Auto-generated method stub
-		//return new TourResource(tour);
+	//db연동 후 변경 예정
+//	public void updateCount() {
+//		count++;
+//		if(maxNumberOfTourist == count){
+//			isFull = true;
+//		}
+//	}
+//	
+//	public boolean isFull() {
+//		return isFull;
+//	}
+//	
+//	public void setFull(boolean isFull) {
+//		this.isFull = isFull;
+//	}
+
+	public int getMaxNumberOfTourist() {
+		return maxNumberOfTourist;
+	}
+
+	public String provideTourInfo() {
+		return"[번호=" + id +"[제목=" + title + ", 설명=" + description+"]";
 	}
 
 	@Override
 	public String toString() {
-		return "여행 [제목=" + title + ", 설명=" + description + ", 가이드=" + guide.nickName
+		return "[제목=" + title + ", 설명=" + description + ", 가이드=" + guide
 				+ ", 장소 리스트=" + placeList + "]";
 	}
-	
 	
 }
