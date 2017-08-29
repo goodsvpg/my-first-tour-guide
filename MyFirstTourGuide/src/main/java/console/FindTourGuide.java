@@ -9,16 +9,20 @@ import java.util.Scanner;
 import domain.Board;
 import domain.Guide;
 import domain.Place;
+import domain.ReservationList;
 import domain.Tour;
 import domain.Tourist;
 
-public class Reservation {
+public class FindTourGuide {
 	private static final int MAX_PLACE_NUM = 5;
 	private static final String STOP_INPUT = "0";
 			
 	private Tourist tourist;
 	private Guide guide;
+	
+	//singleton
 	private Board board;
+	private ReservationList reservationList;
 	
 	private List<Tour> tourList;
 	private List<Place> placeList;
@@ -30,6 +34,7 @@ public class Reservation {
 		login();
 
 		board = Board.getInstance();
+		reservationList = ReservationList.getInstance();
 		
 		tempSetUp();
 		//임시
@@ -45,7 +50,12 @@ public class Reservation {
 					if(!tourListSearchByAddress.isEmpty()){
 						System.out.println("예약할 여행의 번호를 입력해주세요.");
 						Tour tour = selectTour(sc, tourListSearchByAddress);
-						reserveTour(tour);
+						System.out.println("예약할 투어 정보 입니다."+tour.toString());
+						if(reserveTour(tour, reservationList)){
+							System.out.println("예약되었습니다.");
+						}else{
+							System.out.println("예약이 꽉 찼습니다.");
+						}
 						break;
 					}else{
 						System.out.println("해당 주소에 예약 가능한 여행이 없습니다.\n");
@@ -159,8 +169,7 @@ public class Reservation {
 		return tourListSearchByAddress.get(Integer.parseInt(tourNum)-1);
 	}
 	
-	private boolean reserveTour(Tour tour){
-		System.out.println("예약할 투어 정보 입니다."+tour.toString());
-		return guide.confirmTourist(tourist, tour);
+	private boolean reserveTour(Tour tour, ReservationList reservationList){
+		return tourist.requestToParticipateTour(tour, guide, reservationList);
 	}
 }

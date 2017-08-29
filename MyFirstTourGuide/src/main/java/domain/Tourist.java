@@ -16,7 +16,6 @@ public class Tourist extends User{
 		this.role = role;
 	}
 	
-	//list
 	public List<Tour> requestTourList(String address, Board board){
 		List<Tour> tourList = board.giveTourList(address);
 		return tourList;
@@ -29,7 +28,7 @@ public class Tourist extends User{
 //		return tourInfo;
 //	}
 	
-	public void requestToParticipateTour(Tour tour, Guide guide){
-		guide.confirmTourist(this, tour);
+	public boolean requestToParticipateTour(Tour tour, Guide guide, ReservationList reservationList){
+		return guide.confirmTourist(this, tour, reservationList);
 	}
 }

@@ -1,37 +1,48 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ReservationList {
 	
 	private int id;
 	
-	private Tour tour;
-	private List<Tourist> touristList;
-	
-	private int count;
-	private boolean isFull;
+	private List<Reservation> confirmedReservations;
 	
 	private ReservationList(){
-		touristList = new ArrayList<>();
+		confirmedReservations = new LinkedList<>();
 	}
 	
-	public ReservationList(Tour tour, Tourist tourist) {
-		this();
-		this.tour = tour;
-		this.touristList.add(tourist);
+	private static class Singleton{
+		private static final ReservationList reservationList = new ReservationList(); 
 	}
 	
-	public boolean saveToReservationList(Tour tour, Tourist tourist){
-		
-		return true;
+	public static ReservationList getInstance(){
+		return Singleton.reservationList;
 	}
 	
-	private void updateCount(Tour tour) {
-		count++;
-		if(tour.getMaxNumberOfTourist() == count){
-			isFull = true;
+	public boolean saveConfirmedReservation(Tour tour, Tourist tourist, Guide guide){
+		Reservation reservation =  checkReservationExist(tour);
+		if(reservation != null){
+			return reservation.addTourList(tourist);
+		}else{
+			reservation = new Reservation(tour, tourist, guide);
+			return true;
 		}
+		
 	}
+	
+	private Reservation checkReservationExist(Tour tour){
+		Iterator<Reservation> reservationIter = confirmedReservations.iterator();
+		while(reservationIter.hasNext()){
+			Reservation reservation = reservationIter.next();
+			if(reservation.getTour() == tour){
+				return reservation;
+			}
+		}
+		return null;
+	}
+	
 }

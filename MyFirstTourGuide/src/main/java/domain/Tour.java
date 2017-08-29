@@ -13,9 +13,6 @@ public class Tour {
 	private String description;
 	private int maxNumberOfTourist; 
 	
-//	private int count;
-//	private boolean isFull;
-	
 	private Guide guide;
 	private List<Place> placeList;
 	
@@ -58,22 +55,6 @@ public class Tour {
 	public void setPlaceList(List<Place> placeList) {
 		this.placeList = placeList;
 	}
-
-	//db연동 후 변경 예정
-//	public void updateCount() {
-//		count++;
-//		if(maxNumberOfTourist == count){
-//			isFull = true;
-//		}
-//	}
-//	
-//	public boolean isFull() {
-//		return isFull;
-//	}
-//	
-//	public void setFull(boolean isFull) {
-//		this.isFull = isFull;
-//	}
 
 	public int getMaxNumberOfTourist() {
 		return maxNumberOfTourist;

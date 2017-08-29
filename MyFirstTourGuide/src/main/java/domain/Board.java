@@ -43,9 +43,4 @@ public class Board {
 		tourList.add(tour);
 	}
 	
-
-	//추후에 변경
-//	public TourResource showTour(String tourId){
-//		return tour.provideTourInfo();
-//	}
 }

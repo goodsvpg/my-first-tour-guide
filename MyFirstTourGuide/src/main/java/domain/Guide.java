@@ -5,7 +5,6 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class Guide extends User{
-	
 	public Guide(String email, String nickName) {
 		this(email, nickName, "Guide");
 	}
@@ -45,18 +44,14 @@ public class Guide extends User{
 		return false;
 	}
 	
-	public boolean confirmTourist(Tourist tourist, Tour tour) {
-//		boolean IsReservationPosible = tour.isFull();
-//		if(!IsReservationPosible){
-//			tour.updateCount();
-//		}
-//		return IsReservationPosible;
-		return false;
+	public boolean confirmTourist(Tourist tourist, Tour tour, ReservationList reservationList) {
+		//예약 할 껀지 안 할 껀지 가이드가 선택하는 것은 추후에 구현
+		return reservationList.saveConfirmedReservation(tour, tourist, this);
 	}
 
 	@Override
 	public String toString() {
-		return "Guide [email=" + email + ", nickName=" + nickName + "]";
+		return "가이드 [이메일=" + email + ", 닉네임=" + nickName + "]";
 	}
 	
 }
