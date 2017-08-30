@@ -25,8 +25,7 @@ public class FindTourGuide {
 	private ReservationList reservationList;
 	
 	private List<Tour> tourList;
-	private List<Place> placeList;
-	
+
 	public void start(){
 		Scanner sc = new Scanner(System.in);
 		guide = new Guide("follow@me.com", "reliable");
@@ -91,7 +90,7 @@ public class FindTourGuide {
 	}
 	
 	private void enrollTour(Scanner sc){
-		placeList = new ArrayList<Place>();
+		List<Place> placeList = new ArrayList<Place>();
 		int placeCount = 0;
 		enrollPlace: while(placeCount!=MAX_PLACE_NUM){
 			System.out.println("장소 정보를 먼저 입력해 주세요(제목,설명,주소).");

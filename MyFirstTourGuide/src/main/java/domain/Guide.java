@@ -37,8 +37,7 @@ public class Guide extends User{
 			String[] strArr = sc.next().split(",");
 			if(strArr.length==3){
 				Tour myTour = new Tour(this, strArr[0], strArr[1], Integer.parseInt(strArr[2]), placeList);
-				board.saveTour(myTour);
-				return true;
+				return board.saveTour(myTour);
 			}
 		}
 		return false;

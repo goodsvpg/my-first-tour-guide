@@ -37,10 +37,11 @@ public class Board {
 		return matchedTourList;
 	}
 	
-	public void saveTour(Tour tour){
+	public boolean saveTour(Tour tour){
 		//tour의 id는 자동으로 증가하게 변경할 것이므로 삭제 예정
 		tour.setId(tourList.size()+1);
 		tourList.add(tour);
+		return true;
 	}
 	
 }
