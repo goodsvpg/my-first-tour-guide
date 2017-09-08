@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
-import domain.Board;
-import domain.Guide;
-import domain.Place;
-import domain.ReservationList;
-import domain.Tour;
-import domain.Tourist;
+import console.domain.Board;
+import console.domain.Guide;
+import console.domain.Place;
+import console.domain.ReservationList;
+import console.domain.Tour;
+import console.domain.Tourist;
 
 public class FindTourGuide {
 	private static final int MAX_PLACE_NUM = 5;

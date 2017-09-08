@@ -1,4 +1,4 @@
-package domain;
+package console.domain;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

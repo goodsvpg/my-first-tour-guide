@@ -1,4 +1,4 @@
-package domain;
+package console.domain;
 
 import java.util.List;
 import java.util.Scanner;

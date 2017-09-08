@@ -1,4 +1,4 @@
-package domain;
+package console.domain;
 
 public class Place {
 	private String title;
